@@ -21,9 +21,9 @@ namespace Tunify_Platform
             builder.Services.AddScoped<IUsers, UsersServices>();
             builder.Services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo 
                 {
-                    Title = "Tunify API",
+                    Title = "Tunify API", 
                     Version = "v1", 
                     Description = "API for managing playlists, songs, and artists in the Tunify Platform"
                 });
