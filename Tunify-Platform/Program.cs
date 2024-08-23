@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol.Core.Types;
 using Tunify_Platform.Data;
+using Tunify_Platform.Models.DTOs;
 using Tunify_Platform.Repositories.Interfaces;
 using Tunify_Platform.Repositories.Services;
 
@@ -15,10 +17,25 @@ namespace Tunify_Platform
             // Get the connection string settings  
             string ConnectionStringVar = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<TunifyDbContext>(optionsX => optionsX.UseSqlServer(ConnectionStringVar));
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                 .AddEntityFrameworkStores<TunifyDbContext>();
+
+
+
+
+
+
+
             builder.Services.AddScoped<IArtists, ArtistsServices>();
             builder.Services.AddScoped<IPlaylists, PlaylistsServices>();
-            builder.Services.AddScoped<ISongs, SongsServices>(); 
+            builder.Services.AddScoped<ISongs, SongsServices>();
             builder.Services.AddScoped<IUsers, UsersServices>();
+
+            builder.Services.AddScoped<IAccounts, IdentityAccountService>();
+
+
+
             builder.Services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo 
@@ -29,6 +46,8 @@ namespace Tunify_Platform
                 });
             });
             var app = builder.Build();
+            app.UseAuthentication();
+
             app.UseSwagger(
              options =>
              {
@@ -37,9 +56,12 @@ namespace Tunify_Platform
              );
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Tunify API v1");
+                options.SwaggerEndpoint("/api/v1/swagger.json", "Tunify API v1");
                 options.RoutePrefix = "";
             });
+
+           
+
             app.MapControllers();
             app.MapGet("/", () => "Hello World!");
             app.Run();
