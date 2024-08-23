@@ -1,11 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System.Drawing.Printing;
 using Tunify_Platform.Models;
+using Tunify_Platform.Models.DTOs;
 using Tunify_Platform.Repositories.Interfaces;
+using Tunify_Platform.Repositories.Services;
 
 namespace Tunify_Platform.Data
 {
-    public class TunifyDbContext: DbContext
+    public class TunifyDbContext: IdentityDbContext<ApplicationUser>
     {
        public TunifyDbContext(DbContextOptions <TunifyDbContext> options) : base(options)
        { 
