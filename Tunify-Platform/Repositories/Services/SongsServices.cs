@@ -33,7 +33,7 @@ namespace Tunify_Platform.Repositories.Services
         }
         public async Task<Songs> GetSongById(int id)
         {
-            //var oneSong = _context.songs.Where(x => x.Equals(id));
+            /
             var oneSong = await _context.songs.FindAsync(id);
             return oneSong;
         }
