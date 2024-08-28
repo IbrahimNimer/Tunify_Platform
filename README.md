@@ -57,6 +57,8 @@ By adopting the Repository Pattern, the Tunify Platform has become more modular,
 ###     -Open your web browser.
 ### Explore the API:
 ### View and test all available API endpoints directly from the Swagger UI.
+
+
 # Tunify Platform - User Authentication Service
 ### This repository includes the implementation of a user authentication service for the Tunify Platform, utilizing ASP.NET Core Identity for user management. The service is designed to handle user registration, login, and logout functionalities.
 ## Overview
@@ -108,4 +110,32 @@ Login:
 Send a POST request to /api/home/login with the user's credentials.
 Logout:
 Send a POST request to /api/home/logout with the username to log out the user.
+
+
+# Tunify Platform - Authorization and Claims
+
+## Overview
+This repository includes extending the Tunify Platform by implementing JWT-based authentication and authorization. This includes securing your API endpoints, handling user roles and claims, and ensuring that only authorized users can access certain features.
+
+## Key Components
+
+### JWT Authentication
+- **Implementation**: Use JWT (JSON Web Tokens) to authenticate users and secure API endpoints. Tokens are issued upon successful login and are required to access protected routes.
+- **Configuration**: Configure JWT authentication in the `Startup.cs` file, including token generation, validation, and expiration settings.
+
+### Authorization
+- **Role-Based Access Control (RBAC)**: Implement role-based access control to manage user permissions based on their roles. Define roles such as `Admin`, `User`, and `Guest`, and restrict access to specific endpoints accordingly.
+- **Claims-Based Authorization**: Use claims to store additional user information and enforce fine-grained access control based on user claims.
+
+### Securing API Endpoints
+- **Protected Routes**: Apply `[Authorize]` attributes to controllers or actions to restrict access to authenticated users or specific roles.
+- **Custom Authorization Policies**: Create custom policies to handle more complex authorization scenarios based on user claims or roles.
+
+## Implementation Steps
+1. **Configure JWT Authentication**: Set up JWT authentication in `Startup.cs` by adding the necessary middleware and configuration settings.
+2. **Define Roles and Claims**: Define user roles and claims, and configure authorization policies in `Startup.cs`.
+3. **Secure Endpoints**: Apply `[Authorize]` attributes and custom policies to secure API endpoints and ensure only authorized users can access them.
+
+By implementing JWT-based authentication and authorization, the Tunify Platform ensures secure access to its features and services, providing a robust security model for user management and data protection.
+
 
