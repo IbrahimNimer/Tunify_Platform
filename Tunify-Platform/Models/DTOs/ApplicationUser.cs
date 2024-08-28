@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Tunify_Platform.Models.DTOs
+public class ApplicationUser : IdentityUser
 {
-    public class ApplicationUser : IdentityUser
-    {
-    }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
 }
